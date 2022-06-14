@@ -1,0 +1,33 @@
+set nobackup
+set noswapfile
+
+set number
+autocmd ColorScheme * highlight LineNr ctermfg=gray
+
+set showmatch
+set cindent
+set virtualedit=onemore	" 行末まで移動可能
+syntax on
+colorscheme elflord
+
+set hlsearch		" 検索文字をハイライト
+set incsearch		" 検索ワードの最初の文字を入力した時点で検索を開始
+
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap ( ()<LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
+
+function! IndentBraces()
+	let nowletter = getline(".")[col(".")-1]	" 今いるカーソルの位置
+	let beforeletter = getline(".")[col(".")-2]	" １つ前の文字
+	
+	if nowletter == "}" && beforeletter == "{"
+		return "\n\t\n\<up>\<RIGHT>"
+	else
+		return "\n"
+	endif
+endfunction
+
+inoremap <silent> <expr> <CR> IndentBraces()
