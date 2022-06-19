@@ -13,6 +13,16 @@ colorscheme elflord
 set hlsearch		" 検索文字をハイライト
 set incsearch		" 検索ワードの最初の文字を入力した時点で検索を開始
 
+set mouse=a
+
+set hidden		"バッファ切り替えの時にファイルを保存しなくてもよい"
+
+"バッファ切り替えのキーバインド"
+nnoremap <silent>bp :bprevious<CR>
+nnoremap <silent>bn :bnext<CR>
+nnoremap <silent>bb :b#<CR>
+
+"括弧の補完"
 inoremap { {}<LEFT>
 inoremap [ []<LEFT>
 inoremap ( ()<LEFT>
